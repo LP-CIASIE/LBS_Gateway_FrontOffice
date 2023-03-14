@@ -11,7 +11,7 @@ $app = AppFactory::create();
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 
-$errorMiddleware = $app->addErrorMiddleware(false, false, false);
+$errorMiddleware = $app->addErrorMiddleware(true, false, false);
 $errorMiddleware->getDefaultErrorHandler()->forceContentType('application/json');
 
 $errorMiddleware->getDefaultErrorHandler()->registerErrorRenderer('application/json', lbs\gateway\errors\renderer\JsonErrorRenderer::class);
@@ -21,5 +21,11 @@ $errorMiddleware->getDefaultErrorHandler()->registerErrorRenderer('application/j
  * configuring API Routes
  */
 $app->get('/', lbs\gateway\actions\HomeAction::class);
+
+
+/**
+ * API Order Service
+ */
+$app->get('/orders[/]', lbs\gateway\actions\orders\GetOrdersAction::class);
 
 $app->run();
