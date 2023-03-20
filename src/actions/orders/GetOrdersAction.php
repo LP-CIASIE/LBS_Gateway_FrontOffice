@@ -16,7 +16,7 @@ final class GetOrdersAction
     $query = $rq->getQueryParams();
 
     $client = new Client([
-      'base_uri' => 'http://api.order.local:19080',
+      'base_uri' => 'http://api.order.local',
       'timeout' => 2.0,
     ]);
     $responseHTTP = $client->get('/orders', [
