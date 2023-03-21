@@ -18,7 +18,7 @@ $errorMiddleware->getDefaultErrorHandler()->registerErrorRenderer('application/j
 
 
 /**
- * configuring API Routes
+ * API Basic Route
  */
 $app->get('/', lbs\gateway\actions\HomeAction::class);
 
@@ -27,5 +27,6 @@ $app->get('/', lbs\gateway\actions\HomeAction::class);
  * API Order Service
  */
 $app->get('/orders[/]', lbs\gateway\actions\orders\GetOrdersAction::class);
+$app->post('/orders[/]', lbs\gateway\actions\orders\NewOrderAction::class);
 
 $app->run();
