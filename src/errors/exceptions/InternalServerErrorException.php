@@ -2,9 +2,10 @@
 
 namespace lbs\gateway\errors\exceptions;
 
+use Slim\Exception\HttpException;
 use Slim\Exception\HttpInternalServerErrorException;
 
-class InternalServerErrorException extends HttpInternalServerErrorException
+class InternalServerErrorException extends HttpException
 {
   protected $code = 500;
   protected $message = 'Une erreur interne du serveur est survenue. Veuillez réessayer ultérieurement.';

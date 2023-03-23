@@ -3,9 +3,10 @@
 namespace lbs\gateway\errors\exceptions;
 
 use Exception;
+use Slim\Exception\HttpException;
 use Slim\Exception\HttpInternalServerErrorException;
 
-class BodyMissingException extends Exception
+class BodyMissingException extends HttpException
 {
   protected $code = 400;
   protected $message = 'Le body de la requête n\'a pas été trouvé, veuillez recommencer.';
