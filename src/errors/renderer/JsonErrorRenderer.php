@@ -4,8 +4,17 @@ namespace lbs\gateway\errors\renderer;
 
 class JsonErrorRenderer extends \Slim\Error\Renderers\JsonErrorRenderer
 {
-  public function __invoke(\Throwable $exception, bool $displayErrorDetails): string
+  private $container;
+
+  public function __construct(\Psr\Container\ContainerInterface $container)
   {
+    $this->container = $container;
+  }
+
+  public function __invoke(
+    \Throwable $exception,
+    bool $displayErrorDetails
+  ): string {
     $data = [
       'type' => 'error',
       'error' => $exception->getCode(),

@@ -3,8 +3,9 @@
 namespace lbs\gateway\errors\exceptions;
 
 use Exception;
+use Slim\Exception\HttpException;
 
-class BodyMissingAttributesException extends Exception
+class BodyMissingAttributesException extends HttpException
 {
   protected $code = 400;
   protected $message = 'Certain attributs du body de la requête sont manquants.';

@@ -3,8 +3,9 @@
 namespace lbs\gateway\errors\exceptions;
 
 use Exception;
+use Slim\Exception\HttpException;
 
-class BodyErrorValidationException extends Exception
+class BodyErrorValidationException extends HttpException
 {
   protected $code = 400;
   protected $message = 'Certain attributs ne sont pas conforme.';

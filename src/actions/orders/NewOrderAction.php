@@ -2,12 +2,14 @@
 
 namespace lbs\gateway\actions\orders;
 
+use lbs\gateway\actions\AbstractAction;
+
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use GuzzleHttp\Client;
 
-final class NewOrderAction
+final class NewOrderAction extends AbstractAction
 {
   public function __invoke(
     Request $rq,
@@ -15,18 +17,18 @@ final class NewOrderAction
   ): Response {
     $query = $rq->getQueryParams();
 
-    $client = new Client([
-      'base_uri' => 'http://api.order.local',
-      'timeout' => 2.0,
-    ]);
+    $client = $this->container->get('client.order.service');
     $responseHTTP = $client->post('/orders', [
       'query' => $query,
       'headers' => [
         // 'Authorization' => 'bearer ...',
-        'Content-Type' => 'application/json'
+        'Content-Type' => $this->container->get('content.type')
       ],
       'body' => json_encode($rq->getParsedBody())
     ]);
+
+    $logger = $this->container->get('logger');
+    $logger->info("NewOrderAction | POST | {$this->container->get('order.service.uri')}/orders | {$responseHTTP->getStatusCode()}");
 
     return $responseHTTP;
   }
