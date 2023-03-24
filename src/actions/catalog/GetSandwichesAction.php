@@ -17,7 +17,7 @@ final class GetSandwichesAction extends AbstractAction
   ): Response {
     $query = $rq->getQueryParams();
 
-    $client = $this->container->get('client.order.service');
+    $client = $this->container->get('client.catalog.service');
 
     $responseHTTP = $client->get('/items/sandwiches', [
       'query' => $query,
@@ -28,7 +28,7 @@ final class GetSandwichesAction extends AbstractAction
     ]);
 
     $logger = $this->container->get('logger');
-    $logger->info("GetSandwichesAction | GET | {$this->container->get('catalog.service.uri')}/orders | {$responseHTTP->getStatusCode()}");
+    $logger->info("GetSandwichesAction | GET | {$this->container->get('catalog.service.uri')}/items/sandwiches | {$responseHTTP->getStatusCode()}");
 
     return $responseHTTP;
   }

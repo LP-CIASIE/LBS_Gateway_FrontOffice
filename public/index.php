@@ -40,4 +40,6 @@ $app->get('/', lbs\gateway\actions\HomeAction::class);
 $app->get('/orders[/]', lbs\gateway\actions\orders\GetOrdersAction::class);
 $app->post('/orders[/]', lbs\gateway\actions\orders\NewOrderAction::class);
 
+$app->get('/sandwiches[/]', lbs\gateway\actions\catalog\GetSandwichesAction::class);
+
 $app->run();
