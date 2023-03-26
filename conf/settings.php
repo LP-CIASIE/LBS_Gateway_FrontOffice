@@ -9,5 +9,5 @@ return [
 
   'order.service.uri' => 'http://api.order.local',
   'auth.service.uri' => 'http://api.auth.local',
-  'catalog.service.uri' => 'http://api.catalog.local:8055',
+  'catalog.service.uri' => 'http://api.catalog.local',
 ];
