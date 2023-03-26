@@ -22,10 +22,10 @@ final class GetOrdersAction extends AbstractAction
     $responseHTTP = $client->get('/orders', [
       'query' => $query,
       'headers' => [
-        // 'Authorization' => 'bearer ...',
-        'Content-Type' => $this->container->get('content.type')
+        'Authorization' => $rq->getHeader('Authorization')[0]
       ]
     ]);
+
 
     $logger = $this->container->get('logger');
     $logger->info("GetOrdersAction | GET | {$this->container->get('order.service.uri')}/orders | {$responseHTTP->getStatusCode()}");

@@ -23,8 +23,7 @@ final class GetSandwicheByIdAction extends AbstractAction
     $responseHTTP = $client->get("/items/sandwiches/{$args['id']}", [
       'query' => $query,
       'headers' => [
-        // 'Authorization' => 'bearer ...',
-        'Content-Type' => $this->container->get('content.type')
+        'Authorization' => $rq->getHeader('Authorization')[0],
       ]
     ]);
 

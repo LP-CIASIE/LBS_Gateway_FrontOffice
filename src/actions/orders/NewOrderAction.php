@@ -21,7 +21,7 @@ final class NewOrderAction extends AbstractAction
     $responseHTTP = $client->post('/orders', [
       'query' => $query,
       'headers' => [
-        // 'Authorization' => 'bearer ...',
+        'Authorization' => $rq->getHeader('Authorization')[0],
         'Content-Type' => $this->container->get('content.type')
       ],
       'body' => json_encode($rq->getParsedBody())
